@@ -1,5 +1,6 @@
 ## Hi there 👋
-
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=okonomiyak&layout=compact&theme=tokyonight)
+![Stats](https://github-readme-stats.vercel.app/api?username=okonomiyak&show_icons=true&theme=tokyonight)
 <!--
 **okonomiyak/okonomiyak** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
