@@ -1,5 +1,7 @@
 // Generates GitHub stats / top-languages SVG cards for the profile README.
-// Runs in GitHub Actions with GITHUB_TOKEN; no external services or npm deps.
+// Runs in GitHub Actions; no external services or npm deps.
+// Private repos/contributions are included when the token belongs to the user
+// (a personal access token); the default Actions token only sees public data.
 //
 // Usage: GITHUB_TOKEN=... GITHUB_USER=okonomiyak node scripts/generate-stats.mjs [outDir]
 // Set STATS_MOCK=path/to/data.json to render from saved data without calling the API.
