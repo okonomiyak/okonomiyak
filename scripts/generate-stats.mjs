@@ -1,5 +1,7 @@
 // Generates GitHub stats / top-languages SVG cards for the profile README.
-// Runs in GitHub Actions with GITHUB_TOKEN; no external services or npm deps.
+// Runs in GitHub Actions; no external services or npm deps.
+// Private repos/contributions are included when the token belongs to the user
+// (a personal access token); the default Actions token only sees public data.
 //
 // Usage: GITHUB_TOKEN=... GITHUB_USER=okonomiyak node scripts/generate-stats.mjs [outDir]
 // Set STATS_MOCK=path/to/data.json to render from saved data without calling the API.
@@ -96,13 +98,19 @@ const esc = (s) =>
 
 const fmt = (n) => (n >= 1000 ? `${(n / 1000).toFixed(1).replace(/\.0$/, "")}k` : String(n));
 
-function card(width, height, title, body) {
+// Both cards share one size so they line up side by side in the README.
+const CARD_W = 400;
+const CARD_H = 195;
+
+function card(title, body) {
+  const width = CARD_W;
+  const height = CARD_H;
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img" aria-label="${esc(title)}">
   <style>
     .title { font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${THEME.title}; }
     .label { font: 600 14px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${THEME.text}; }
     .value { font: 700 14px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${THEME.text}; }
-    .lang  { font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${THEME.text}; }
+    .lang  { font: 400 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${THEME.text}; }
   </style>
   <rect x="0.5" y="0.5" rx="4.5" width="${width - 1}" height="${height - 1}" fill="${THEME.bg}" stroke="${THEME.border}"/>
   <text x="25" y="35" class="title">${esc(title)}</text>
@@ -127,16 +135,15 @@ function statsCard(d) {
   <text x="300" y="${y}" class="value">${fmt(value)}</text>`;
     })
     .join("\n");
-  return card(400, 70 + rows.length * 25, `${d.name}'s GitHub Stats`, body);
+  return card(`${d.name}'s GitHub Stats`, body);
 }
 
 function langsCard(d, limit = 8) {
   const top = d.languages.slice(0, limit);
   const total = top.reduce((s, l) => s + l.size, 0);
-  const width = 300;
-  const barWidth = width - 50;
+  const barWidth = CARD_W - 50;
   if (total === 0) {
-    return card(width, 90, "Most Used Languages", `  <text x="25" y="65" class="lang">No language data yet</text>`);
+    return card("Most Used Languages", `  <text x="25" y="65" class="lang">No language data yet</text>`);
   }
 
   let x = 25;
@@ -153,21 +160,20 @@ function langsCard(d, limit = 8) {
     .map((l, i) => {
       const col = i % 2;
       const row = Math.floor(i / 2);
-      const lx = 25 + col * 130;
-      const ly = 85 + row * 22;
+      const lx = 25 + col * 175;
+      const ly = 88 + row * 26;
       const pct = ((l.size / total) * 100).toFixed(1);
       return `  <circle cx="${lx + 5}" cy="${ly - 4}" r="5" fill="${esc(l.color)}"/>
   <text x="${lx + 15}" y="${ly}" class="lang">${esc(l.name)} ${pct}%</text>`;
     })
     .join("\n");
 
-  const height = 85 + Math.ceil(top.length / 2) * 22;
   const body = `  <mask id="bar-mask"><rect x="25" y="50" width="${barWidth}" height="8" rx="5" fill="#fff"/></mask>
   <g mask="url(#bar-mask)">
 ${bar}
   </g>
 ${legend}`;
-  return card(width, height, "Most Used Languages", body);
+  return card("Most Used Languages", body);
 }
 
 async function main() {

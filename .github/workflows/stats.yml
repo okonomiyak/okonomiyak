@@ -29,7 +29,9 @@ jobs:
 
       - name: Generate SVG cards
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # STATS_TOKEN (a personal access token) includes private repos and
+          # contributions; without it, only public data is counted.
+          GITHUB_TOKEN: ${{ secrets.STATS_TOKEN || secrets.GITHUB_TOKEN }}
           GITHUB_USER: ${{ github.repository_owner }}
         run: node scripts/generate-stats.mjs generated
 
