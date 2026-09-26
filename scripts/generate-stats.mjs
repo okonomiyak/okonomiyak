@@ -35,7 +35,7 @@ query($login: String!, $after: String) {
       pageInfo { hasNextPage endCursor }
       nodes {
         stargazerCount
-        languages(first: 20, orderBy: { field: SIZE, direction: DESC }) {
+        languages(first: 100, orderBy: { field: SIZE, direction: DESC }) {
           edges { size node { name color } }
         }
       }
@@ -75,8 +75,9 @@ async function fetchData() {
   const langs = new Map();
   for (const repo of repos) {
     for (const { size, node } of repo.languages.edges) {
-      const cur = langs.get(node.name) ?? { name: node.name, color: node.color ?? "#858585", size: 0 };
+      const cur = langs.get(node.name) ?? { name: node.name, color: node.color ?? "#858585", size: 0, repos: 0 };
       cur.size += size;
+      cur.repos += 1;
       langs.set(node.name, cur);
     }
   }
@@ -176,6 +177,41 @@ ${legend}`;
   return card("Most Used Languages", body);
 }
 
+const fmtBytes = (n) => {
+  const units = ["B", "KB", "MB", "GB"];
+  let i = 0;
+  while (n >= 1024 && i < units.length - 1) {
+    n /= 1024;
+    i++;
+  }
+  return `${i === 0 ? n : n.toFixed(1)} ${units[i]}`;
+};
+
+// Full list of every language, unlike the card which only shows the top few.
+function languagesMarkdown(d) {
+  const total = d.languages.reduce((s, l) => s + l.size, 0);
+  const lines = [
+    `# ${d.name} が使っている言語`,
+    "",
+    "自分が所有するリポジトリ（フォークを除く）のコード量から集計しています。",
+    "`.github/workflows/stats.yml` で自動更新されます。",
+    "",
+  ];
+  if (total === 0) return [...lines, "まだ言語データがありません。", ""].join("\n");
+  lines.push(
+    `全 ${d.languages.length} 言語`,
+    "",
+    "| # | 言語 | 割合 | コード量 | リポジトリ数 |",
+    "|--:|---|--:|--:|--:|",
+    ...d.languages.map(
+      (l, i) =>
+        `| ${i + 1} | ${l.name.replace(/\|/g, "\\|")} | ${((l.size / total) * 100).toFixed(2)}% | ${fmtBytes(l.size)} | ${l.repos ?? "-"} |`,
+    ),
+    "",
+  );
+  return lines.join("\n");
+}
+
 async function main() {
   let data;
   if (process.env.STATS_MOCK) {
@@ -187,7 +223,8 @@ async function main() {
   await mkdir(OUT_DIR, { recursive: true });
   await writeFile(join(OUT_DIR, "stats.svg"), statsCard(data));
   await writeFile(join(OUT_DIR, "top-langs.svg"), langsCard(data));
-  console.log(`Wrote ${OUT_DIR}/stats.svg and ${OUT_DIR}/top-langs.svg`);
+  await writeFile(join(OUT_DIR, "LANGUAGES.md"), languagesMarkdown(data));
+  console.log(`Wrote stats.svg, top-langs.svg and LANGUAGES.md to ${OUT_DIR}`);
 }
 
 main().catch((err) => {
