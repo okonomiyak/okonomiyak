@@ -15,7 +15,7 @@
   <text x="300" y="95" class="value">325</text>
   <circle cx="31" cy="115" r="5" fill="#bf91f3"/>
   <text x="45" y="120" class="label">Total PRs:</text>
-  <text x="300" y="120" class="value">4</text>
+  <text x="300" y="120" class="value">5</text>
   <circle cx="31" cy="140" r="5" fill="#bf91f3"/>
   <text x="45" y="145" class="label">Total Issues:</text>
   <text x="300" y="145" class="value">1</text>
