@@ -36,13 +36,27 @@ jobs:
         run: node scripts/generate-stats.mjs generated
 
       - name: Commit changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.STATS_TOKEN || secrets.GITHUB_TOKEN }}
+          GITHUB_USER: ${{ github.repository_owner }}
         run: |
-          git add generated
-          if git diff --cached --quiet; then
-            echo "No changes"
-            exit 0
-          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "chore: update profile stats"
-          git push
+          # main may move while this runs (a merge or another run), so on a
+          # rejected push, move onto the latest main, regenerate and retry.
+          for attempt in 1 2 3; do
+            git add generated
+            if git diff --cached --quiet; then
+              echo "No changes"
+              exit 0
+            fi
+            git commit -m "chore: update profile stats"
+            if git push origin HEAD:${{ github.ref_name }}; then
+              exit 0
+            fi
+            echo "Push rejected (attempt $attempt); retrying on latest ${{ github.ref_name }}"
+            git fetch origin ${{ github.ref_name }}
+            git reset --hard origin/${{ github.ref_name }}
+            node scripts/generate-stats.mjs generated
+          done
+          exit 1
