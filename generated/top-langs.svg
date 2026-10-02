@@ -9,14 +9,14 @@
   <text x="25" y="35" class="title">Most Used Languages</text>
   <mask id="bar-mask"><rect x="25" y="50" width="350" height="8" rx="5" fill="#fff"/></mask>
   <g mask="url(#bar-mask)">
-    <rect x="25.00" y="50" width="193.21" height="8" fill="#b07219"/>
-    <rect x="218.21" y="50" width="65.00" height="8" fill="#f1e05a"/>
-    <rect x="283.22" y="50" width="39.06" height="8" fill="#dea584"/>
-    <rect x="322.28" y="50" width="28.37" height="8" fill="#7355dd"/>
+    <rect x="25.00" y="50" width="193.17" height="8" fill="#b07219"/>
+    <rect x="218.17" y="50" width="64.99" height="8" fill="#f1e05a"/>
+    <rect x="283.16" y="50" width="39.06" height="8" fill="#dea584"/>
+    <rect x="322.21" y="50" width="28.45" height="8" fill="#7355dd"/>
     <rect x="350.66" y="50" width="12.73" height="8" fill="#222c37"/>
     <rect x="363.39" y="50" width="4.89" height="8" fill="#4298b8"/>
-    <rect x="368.28" y="50" width="4.09" height="8" fill="#555555"/>
-    <rect x="372.37" y="50" width="2.63" height="8" fill="#aace60"/>
+    <rect x="368.29" y="50" width="4.09" height="8" fill="#555555"/>
+    <rect x="372.38" y="50" width="2.62" height="8" fill="#aace60"/>
   </g>
   <circle cx="30" cy="84" r="5" fill="#b07219"/>
   <text x="40" y="88" class="lang">Java 55.2%</text>
@@ -33,5 +33,5 @@
   <circle cx="30" cy="162" r="5" fill="#555555"/>
   <text x="40" y="166" class="lang">C 1.2%</text>
   <circle cx="205" cy="162" r="5" fill="#aace60"/>
-  <text x="215" y="166" class="lang">HLSL 0.8%</text>
+  <text x="215" y="166" class="lang">HLSL 0.7%</text>
 </svg>
