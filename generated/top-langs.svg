@@ -10,9 +10,9 @@
   <mask id="bar-mask"><rect x="25" y="50" width="350" height="8" rx="5" fill="#fff"/></mask>
   <g mask="url(#bar-mask)">
     <rect x="25.00" y="50" width="202.47" height="8" fill="#b07219"/>
-    <rect x="227.47" y="50" width="59.41" height="8" fill="#f1e05a"/>
-    <rect x="286.87" y="50" width="39.87" height="8" fill="#dea584"/>
-    <rect x="326.75" y="50" width="26.01" height="8" fill="#7355dd"/>
+    <rect x="227.47" y="50" width="59.40" height="8" fill="#f1e05a"/>
+    <rect x="286.88" y="50" width="39.87" height="8" fill="#dea584"/>
+    <rect x="326.75" y="50" width="26.00" height="8" fill="#7355dd"/>
     <rect x="352.75" y="50" width="11.64" height="8" fill="#222c37"/>
     <rect x="364.39" y="50" width="4.47" height="8" fill="#4298b8"/>
     <rect x="368.86" y="50" width="3.74" height="8" fill="#555555"/>
