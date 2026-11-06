@@ -12,10 +12,10 @@
   <text x="300" y="70" class="value">2</text>
   <circle cx="31" cy="90" r="5" fill="#bf91f3"/>
   <text x="45" y="95" class="label">Total Commits (last year):</text>
-  <text x="300" y="95" class="value">504</text>
+  <text x="300" y="95" class="value">508</text>
   <circle cx="31" cy="115" r="5" fill="#bf91f3"/>
   <text x="45" y="120" class="label">Total PRs:</text>
-  <text x="300" y="120" class="value">22</text>
+  <text x="300" y="120" class="value">23</text>
   <circle cx="31" cy="140" r="5" fill="#bf91f3"/>
   <text x="45" y="145" class="label">Total Issues:</text>
   <text x="300" y="145" class="value">1</text>
