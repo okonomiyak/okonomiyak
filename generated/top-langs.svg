@@ -9,10 +9,10 @@
   <text x="25" y="35" class="title">Most Used Languages</text>
   <mask id="bar-mask"><rect x="25" y="50" width="350" height="8" rx="5" fill="#fff"/></mask>
   <g mask="url(#bar-mask)">
-    <rect x="25.00" y="50" width="221.42" height="8" fill="#b07219"/>
-    <rect x="246.42" y="50" width="48.36" height="8" fill="#f1e05a"/>
-    <rect x="294.78" y="50" width="39.27" height="8" fill="#dea584"/>
-    <rect x="334.05" y="50" width="22.21" height="8" fill="#7355dd"/>
+    <rect x="25.00" y="50" width="221.41" height="8" fill="#b07219"/>
+    <rect x="246.41" y="50" width="48.35" height="8" fill="#f1e05a"/>
+    <rect x="294.76" y="50" width="39.29" height="8" fill="#dea584"/>
+    <rect x="334.06" y="50" width="22.21" height="8" fill="#7355dd"/>
     <rect x="356.27" y="50" width="9.31" height="8" fill="#222c37"/>
     <rect x="365.58" y="50" width="3.58" height="8" fill="#4298b8"/>
     <rect x="369.16" y="50" width="2.99" height="8" fill="#555555"/>
