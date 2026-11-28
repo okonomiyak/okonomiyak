@@ -9,17 +9,17 @@
   <text x="25" y="35" class="title">Most Used Languages</text>
   <mask id="bar-mask"><rect x="25" y="50" width="350" height="8" rx="5" fill="#fff"/></mask>
   <g mask="url(#bar-mask)">
-    <rect x="25.00" y="50" width="219.21" height="8" fill="#b07219"/>
-    <rect x="244.21" y="50" width="47.77" height="8" fill="#dea584"/>
-    <rect x="291.98" y="50" width="44.96" height="8" fill="#f1e05a"/>
-    <rect x="336.93" y="50" width="20.65" height="8" fill="#7355dd"/>
-    <rect x="357.59" y="50" width="8.66" height="8" fill="#222c37"/>
-    <rect x="366.24" y="50" width="3.33" height="8" fill="#4298b8"/>
-    <rect x="369.57" y="50" width="2.78" height="8" fill="#555555"/>
-    <rect x="372.35" y="50" width="2.65" height="8" fill="#c6538c"/>
+    <rect x="25.00" y="50" width="219.50" height="8" fill="#b07219"/>
+    <rect x="244.50" y="50" width="47.66" height="8" fill="#dea584"/>
+    <rect x="292.16" y="50" width="44.86" height="8" fill="#f1e05a"/>
+    <rect x="337.02" y="50" width="20.61" height="8" fill="#7355dd"/>
+    <rect x="357.62" y="50" width="8.64" height="8" fill="#222c37"/>
+    <rect x="366.26" y="50" width="3.32" height="8" fill="#4298b8"/>
+    <rect x="369.58" y="50" width="2.77" height="8" fill="#555555"/>
+    <rect x="372.36" y="50" width="2.64" height="8" fill="#c6538c"/>
   </g>
   <circle cx="30" cy="84" r="5" fill="#b07219"/>
-  <text x="40" y="88" class="lang">Java 62.6%</text>
+  <text x="40" y="88" class="lang">Java 62.7%</text>
   <circle cx="205" cy="84" r="5" fill="#dea584"/>
   <text x="215" y="88" class="lang">Rust 13.6%</text>
   <circle cx="30" cy="110" r="5" fill="#f1e05a"/>
@@ -29,7 +29,7 @@
   <circle cx="30" cy="136" r="5" fill="#222c37"/>
   <text x="40" y="140" class="lang">ShaderLab 2.5%</text>
   <circle cx="205" cy="136" r="5" fill="#4298b8"/>
-  <text x="215" y="140" class="lang">Groovy 1.0%</text>
+  <text x="215" y="140" class="lang">Groovy 0.9%</text>
   <circle cx="30" cy="162" r="5" fill="#555555"/>
   <text x="40" y="166" class="lang">C 0.8%</text>
   <circle cx="205" cy="162" r="5" fill="#c6538c"/>
